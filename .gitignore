@@ -1,4 +1,5 @@
 *.gem
 *.tar.gz
 
-docker-compose.yml
+.env.postgres
+.env.gitlab

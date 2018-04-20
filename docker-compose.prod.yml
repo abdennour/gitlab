@@ -9,23 +9,11 @@ services:
     volumes:
     - redis-data:/var/lib/redis:Z
 
-  postgresql:
-    restart: always
-    image: sameersbn/postgresql:9.6-2
-    volumes:
-    - db-data:/var/lib/postgresql:Z
-    environment:
-    - DB_USER=gitlab
-    - DB_PASS=password
-    - DB_NAME=gitlabhq_production
-    - DB_EXTENSION=pg_trgm
-
   gitlab:
     restart: always
     image: sameersbn/gitlab:10.6.4
     depends_on:
     - redis
-    - postgresql
     ports:
     - "10080:80"
     - "10022:22"
@@ -35,17 +23,17 @@ services:
     - DEBUG=false
 
     - DB_ADAPTER=postgresql
-    - DB_HOST=postgresql
-    - DB_PORT=5432
-    - DB_USER=gitlab
-    - DB_PASS=password
-    - DB_NAME=gitlabhq_production
+    - DB_HOST=${DB_HOST}
+    - DB_PORT=${DB_PORT}
+    - DB_USER=${DB_USER}
+    - DB_PASS=${DB_PASS}
+    - DB_NAME=${DB_NAME}
 
     - REDIS_HOST=redis
     - REDIS_PORT=6379
 
-    - TZ=Asia/Kolkata
-    - GITLAB_TIMEZONE=Kolkata
+    - TZ=Asia/Riyadh
+    - GITLAB_TIMEZONE=Riyadh
 
     - GITLAB_HTTPS=false
     - SSL_SELF_SIGNED=false
