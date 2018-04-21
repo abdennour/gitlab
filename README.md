@@ -1,12 +1,12 @@
 # Env files
 
-- .env.gitlab
+- .env
 - .env.postres
 
 Do not forget
 
 ```sh
-cp .env.gitlab.dist .env.gitlab
+cp .env.dist .env
 cp .env.postgres.dist .env.postres
 ```
 

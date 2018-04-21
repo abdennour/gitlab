@@ -1,5 +1,5 @@
 *.gem
 *.tar.gz
 
+.env
 .env.postgres
-.env.gitlab

@@ -10,7 +10,7 @@ services:
     - redis-data:/var/lib/redis:Z
   gitlab:
     restart: always
-    image: sameersbn/gitlab:10.6.4
+    image: 799571705565.dkr.ecr.eu-west-1.amazonaws.com/gitlab:617733d
     depends_on:
     - redis
     ports:
@@ -19,7 +19,7 @@ services:
     volumes:
     - git-data:/home/git/data:Z
     env_file:
-      - .env.gitlab
+      - .env
       - .env.postgres
 
 volumes:

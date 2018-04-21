@@ -10,16 +10,22 @@ services:
     - redis-data:/var/lib/redis:Z
 
   postgresql:
+    hostname: ${DB_HOST}
     restart: always
     image: sameersbn/postgresql:9.6-2
     volumes:
     - db-data:/var/lib/postgresql:Z
-    env_file:
-      - .env.postgres
+    environment:
+    - DB_USER=${DB_USER}
+    - DB_PASS=${DB_PASS}
+    - DB_NAME=${DB_NAME}
+    - DB_EXTENSION=${DB_EXTENSION}
 
   gitlab:
     restart: always
-    image: sameersbn/gitlab:10.6.4
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     depends_on:
     - redis
     - postgresql
@@ -29,8 +35,7 @@ services:
     volumes:
     - git-data:/home/git/data:Z
     env_file:
-      - .env.gitlab
-      - .env.postgres
+      - .env
 
 volumes:
   db-data:
