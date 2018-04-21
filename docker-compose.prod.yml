@@ -20,7 +20,6 @@ services:
     - git-data:/home/git/data:Z
     env_file:
       - .env
-      - .env.postgres
 
 volumes:
   redis-data:
